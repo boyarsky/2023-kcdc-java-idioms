@@ -6,7 +6,6 @@
       <sourceFolder url="file://$MODULE_DIR$/lab-solutions/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lab-solutions/src/test/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/lab/src/main/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/lab/src/test" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/lab/src/test/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/lecture/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lecture/src/test/java" isTestSource="true" />
@@ -30,6 +29,5 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="javaparser-core-3.25.3" level="project" />
   </component>
 </module>

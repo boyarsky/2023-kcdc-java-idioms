@@ -9,10 +9,17 @@ Open the lab/src/main/java file for the current lab and implement the methods so
 
 Run the equivalent lab/src/test/java file to see if you got it right.
 
+JUnit 5.9.3 is provided in the lib folder in case your IDE doesn't work with the default version of JUnit you have installed. Add all jars in lib to your project's classpath to use. 
+
 ## Open in IntelliJ
 
 1. File > Open
 1. Choose the folder you cloned (or downloaded as a zip)
 1. Click the option to trust the project
-2. Choose the latest SDK/version of Java available in your version of IntelliJ
+1. Choose the latest SDK/version of Java available in your version of IntelliJ
 
+## Open in Eclipse
+
+1. File > Import
+1. Existing Projects into Workspace
+1. In the project properties, set Java to the latest version
