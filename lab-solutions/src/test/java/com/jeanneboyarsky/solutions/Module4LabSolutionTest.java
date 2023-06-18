@@ -1,6 +1,5 @@
 package com.jeanneboyarsky.solutions;
 
-import com.jeanneboyarsky.rules.CodeRulesForMethods;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
@@ -14,7 +13,7 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.*;
 
-import static com.jeanneboyarsky.solutions.Module4LabSolution.Workshop;
+import static com.jeanneboyarsky.solutions.Module4LabSolution.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class Module4LabSolutionTest {
@@ -27,44 +26,41 @@ public class Module4LabSolutionTest {
     private Path path;
 
     @BeforeEach
-    void devNexusWorkshops() {
+    void kcdcWorkshops() {
         workshops = Map.ofEntries(
-                Map.entry("Kotlin",
-                        new Workshop("Kotlin Full Day Workshop", 302,
-                                "Kenneth Kousen")),
-                Map.entry("TDD",
-                        new Workshop("Test Driven Development: From Principles to Practice", 303
-                                , "Venkat Subramaniam")),
-                Map.entry("Idioms",
-                        new Workshop("Java Idioms for becoming a more powerful developer", 304,
-                                "Jeanne Boyarsky")),
+                Map.entry("Performance",
+                        new Workshop("Fundamentals of Web Performance", 2201,
+                                "Todd Gardner")),
+                Map.entry("Career",
+                        new Workshop("Charting a Course to Your Dream Job", 2202
+                                , "Cassandra Faris")),
+                Map.entry("Terraform-Ansible",
+                        new Workshop("Create a Cloud Environment with Terraform and Ansible", 2203,
+                                "Gene Gotimer")),
+                Map.entry("Data-Science",
+                        new Workshop("Data Science: Zero to Hero", 2204,
+                                "Gary Short")),
+                Map.entry("Cypress",
+                        new Workshop("End-to-End and Component Testing with Cypress", 2205,
+                                "Mark Noonan")),
+                Map.entry("GitHub",
+                        new Workshop("End to End DevOps with GitHub", 2206,
+                                "Damian Brady")),
+                Map.entry("FERNI",
+                        new Workshop("Freaky-Fast Full Stack with the FERNI Stack",
+                                2207, "Keith Kurak")),
+                Map.entry("Spring",
+                        new Workshop("Getting Started with Spring", 2208,
+                                "Dan Vega", "DaShaun Carter")),
                 Map.entry("Security",
-                        new Workshop("Java Security Workshop", 305,
-                                "Steve Poole", "Brian Vermeer")),
-                Map.entry("Advanced-Kubernetes",
-                        new Workshop("Advanced Kubernetes workshop", 311,
-                                "Adarsh Shah")),
-                Map.entry("Kubernetes-101",
-                        new Workshop("Kubernetes 101 Workshop", 312,
-                                "JJ Asghar")),
-                Map.entry("CloudNativeMicroprofile",
-                        new Workshop("Cloud Native Microservice with MicroProfile, Docker, Kubernetes, Istio and Open Shift",
-                                313, "Emily Jiang")),
-                Map.entry("Quarkus",
-                        new Workshop("The Quarkus Tutorial", 314,
-                                "Edson Yanaga")),
-                Map.entry("SpringBoot",
-                        new Workshop("Extending Spring Boot for Enterprise", 315,
-                                "Billy Korando")),
-                Map.entry("Microservices",
-                        new Workshop("Responsible Microservices Architecture", 403,
-                                "Nathaniel Schutta")),
-                Map.entry("DDD",
-                        new Workshop("Domain Driven Design Workshop", 404,
-                                "Rob Curry", "Kelly Morrison", "Tony Stuchel", "Steve Fordham", "Sharma Vedula")),
-                Map.entry("CloudNativeSpringBoot",
-                        new Workshop("Google Cloud Native with Spring Boot", 405,
-                                "Ray Tsang", "James Ward")));
+                        new Workshop("To the Left, to the Left: All your Security Shifted to the Left", 2210,
+                                "Eddie Knight", "Theresa Mammarella")),
+                Map.entry("Architecture",
+                        new Workshop("Growing your career in architecture: 8 experiences to prepare you to be a professional architect", 2211,
+                                "Brian Loomis")),
+                Map.entry("Remix",
+                        new Workshop("Remix Fundamentals", 2212,
+                                "Jake Ginnivan")));
         target = new Module4LabSolution();
         path = Paths.get("lab/src/main/resources/workshops.csv");
         target.writeWorkshopsSortedByRoomNumber(workshops, path);
@@ -95,18 +91,17 @@ public class Module4LabSolutionTest {
 
     @Test
     void readFile() throws IOException {
-        List<String> expected = List.of("Kotlin,302,\"Kotlin Full Day Workshop\",\"Kenneth Kousen\"",
-                "TDD,303,\"Test Driven Development: From Principles to Practice\",\"Venkat Subramaniam\"",
-                "Idioms,304,\"Java Idioms for becoming a more powerful developer\",\"Jeanne Boyarsky\"",
-                "Security,305,\"Java Security Workshop\",\"Steve Poole,Brian Vermeer\"",
-                "Advanced-Kubernetes,311,\"Advanced Kubernetes workshop\",\"Adarsh Shah\"",
-                "Kubernetes-101,312,\"Kubernetes 101 Workshop\",\"JJ Asghar\"",
-                "CloudNativeMicroprofile,313,\"Cloud Native Microservice with MicroProfile, Docker, Kubernetes, Istio and Open Shift\",\"Emily Jiang\"",
-                "Quarkus,314,\"The Quarkus Tutorial\",\"Edson Yanaga\"",
-                "SpringBoot,315,\"Extending Spring Boot for Enterprise\",\"Billy Korando\"",
-                "Microservices,403,\"Responsible Microservices Architecture\",\"Nathaniel Schutta\"",
-                "DDD,404,\"Domain Driven Design Workshop\",\"Rob Curry,Kelly Morrison,Tony Stuchel,Steve Fordham,Sharma Vedula\"",
-                "CloudNativeSpringBoot,405,\"Google Cloud Native with Spring Boot\",\"Ray Tsang,James Ward\"");
+        List<String> expected = List.of("Performance,2201,\"Fundamentals of Web Performance\",\"Todd Gardner\"",
+                "Career,2202,\"Charting a Course to Your Dream Job\",\"Cassandra Faris\"",
+                "Terraform-Ansible,2203,\"Create a Cloud Environment with Terraform and Ansible\",\"Gene Gotimer\"",
+                "Data-Science,2204,\"Data Science: Zero to Hero\",\"Gary Short\"",
+                "Cypress,2205,\"End-to-End and Component Testing with Cypress\",\"Mark Noonan\"",
+                "GitHub,2206,\"End to End DevOps with GitHub\",\"Damian Brady\"",
+                "FERNI,2207,\"Freaky-Fast Full Stack with the FERNI Stack\",\"Keith Kurak\"",
+                "Spring,2208,\"Getting Started with Spring\",\"Dan Vega,DaShaun Carter\"",
+                "Security,2210,\"To the Left, to the Left: All your Security Shifted to the Left\",\"Eddie Knight,Theresa Mammarella\"",
+                "Architecture,2211,\"Growing your career in architecture: 8 experiences to prepare you to be a professional architect\",\"Brian Loomis\"",
+                "Remix,2212,\"Remix Fundamentals\",\"Jake Ginnivan\"");
         List<String> actual = Files.readAllLines(path);
         assertEquals(expected, actual);
     }
@@ -125,18 +120,17 @@ public class Module4LabSolutionTest {
 
     @Test
     void musicalRooms() throws IOException {
-        List<String> expected = List.of("TDD,303,\"Test Driven Development: From Principles to Practice\",\"Venkat Subramaniam\"",
-                "Security,305,\"Java Security Workshop\",\"Steve Poole,Brian Vermeer\"",
-                "Advanced-Kubernetes,311,\"Advanced Kubernetes workshop\",\"Adarsh Shah\"",
-                "CloudNativeMicroprofile,313,\"Cloud Native Microservice with MicroProfile, Docker, Kubernetes, Istio and Open Shift\",\"Emily Jiang\"",
-                "SpringBoot,315,\"Extending Spring Boot for Enterprise\",\"Billy Korando\"",
-                "Microservices,403,\"Responsible Microservices Architecture\",\"Nathaniel Schutta\"",
-                "CloudNativeSpringBoot,405,\"Google Cloud Native with Spring Boot\",\"Ray Tsang,James Ward\"",
-                "Kotlin,302,\"Kotlin Full Day Workshop\",\"Kenneth Kousen\"",
-                "Idioms,304,\"Java Idioms for becoming a more powerful developer\",\"Jeanne Boyarsky\"",
-                "Kubernetes-101,312,\"Kubernetes 101 Workshop\",\"JJ Asghar\"",
-                "Quarkus,314,\"The Quarkus Tutorial\",\"Edson Yanaga\"",
-                "DDD,404,\"Domain Driven Design Workshop\",\"Rob Curry,Kelly Morrison,Tony Stuchel,Steve Fordham,Sharma Vedula\"");
+        List<String> expected = List.of("Performance,2201,\"Fundamentals of Web Performance\",\"Todd Gardner\"",
+                "Terraform-Ansible,2203,\"Create a Cloud Environment with Terraform and Ansible\",\"Gene Gotimer\"",
+                "Cypress,2205,\"End-to-End and Component Testing with Cypress\",\"Mark Noonan\"",
+                "FERNI,2207,\"Freaky-Fast Full Stack with the FERNI Stack\",\"Keith Kurak\"",
+                "Architecture,2211,\"Growing your career in architecture: 8 experiences to prepare you to be a professional architect\",\"Brian Loomis\"",
+                "Career,2202,\"Charting a Course to Your Dream Job\",\"Cassandra Faris\"",
+                "Data-Science,2204,\"Data Science: Zero to Hero\",\"Gary Short\"",
+                "GitHub,2206,\"End to End DevOps with GitHub\",\"Damian Brady\"",
+                "Spring,2208,\"Getting Started with Spring\",\"Dan Vega,DaShaun Carter\"",
+                "Security,2210,\"To the Left, to the Left: All your Security Shifted to the Left\",\"Eddie Knight,Theresa Mammarella\"",
+                "Remix,2212,\"Remix Fundamentals\",\"Jake Ginnivan\"");
         target.musicalRooms(path);
         List<String> actual = Files.readAllLines(path);
         assertEquals(expected, actual);
@@ -152,7 +146,7 @@ public class Module4LabSolutionTest {
     // ---------------------------------------------------------
     @Test
     void shortestLine() throws IOException {
-        String expected = "Quarkus,314,\"The Quarkus Tutorial\",\"Edson Yanaga\"";
+        String expected = "Remix,2212,\"Remix Fundamentals\",\"Jake Ginnivan\"";
         Optional<String> actual = target.shortestLine(path);
         assertEquals(expected, actual.get());
     }
@@ -178,18 +172,17 @@ public class Module4LabSolutionTest {
 
     @Test
     void musicalRoomsStreamVersion() throws IOException {
-        List<String> expected = List.of("TDD,303,\"Test Driven Development: From Principles to Practice\",\"Venkat Subramaniam\"",
-                "Security,305,\"Java Security Workshop\",\"Steve Poole,Brian Vermeer\"",
-                "Advanced-Kubernetes,311,\"Advanced Kubernetes workshop\",\"Adarsh Shah\"",
-                "CloudNativeMicroprofile,313,\"Cloud Native Microservice with MicroProfile, Docker, Kubernetes, Istio and Open Shift\",\"Emily Jiang\"",
-                "SpringBoot,315,\"Extending Spring Boot for Enterprise\",\"Billy Korando\"",
-                "Microservices,403,\"Responsible Microservices Architecture\",\"Nathaniel Schutta\"",
-                "CloudNativeSpringBoot,405,\"Google Cloud Native with Spring Boot\",\"Ray Tsang,James Ward\"",
-                "Kotlin,302,\"Kotlin Full Day Workshop\",\"Kenneth Kousen\"",
-                "Idioms,304,\"Java Idioms for becoming a more powerful developer\",\"Jeanne Boyarsky\"",
-                "Kubernetes-101,312,\"Kubernetes 101 Workshop\",\"JJ Asghar\"",
-                "Quarkus,314,\"The Quarkus Tutorial\",\"Edson Yanaga\"",
-                "DDD,404,\"Domain Driven Design Workshop\",\"Rob Curry,Kelly Morrison,Tony Stuchel,Steve Fordham,Sharma Vedula\"");
+        List<String> expected = List.of("Performance,2201,\"Fundamentals of Web Performance\",\"Todd Gardner\"",
+                "Terraform-Ansible,2203,\"Create a Cloud Environment with Terraform and Ansible\",\"Gene Gotimer\"",
+                "Cypress,2205,\"End-to-End and Component Testing with Cypress\",\"Mark Noonan\"",
+                "FERNI,2207,\"Freaky-Fast Full Stack with the FERNI Stack\",\"Keith Kurak\"",
+                "Architecture,2211,\"Growing your career in architecture: 8 experiences to prepare you to be a professional architect\",\"Brian Loomis\"",
+                "Career,2202,\"Charting a Course to Your Dream Job\",\"Cassandra Faris\"",
+                "Data-Science,2204,\"Data Science: Zero to Hero\",\"Gary Short\"",
+                "GitHub,2206,\"End to End DevOps with GitHub\",\"Damian Brady\"",
+                "Spring,2208,\"Getting Started with Spring\",\"Dan Vega,DaShaun Carter\"",
+                "Security,2210,\"To the Left, to the Left: All your Security Shifted to the Left\",\"Eddie Knight,Theresa Mammarella\"",
+                "Remix,2212,\"Remix Fundamentals\",\"Jake Ginnivan\"");
         target.musicalRoomsStreamVersion(path);
         List<String> actual = Files.readAllLines(path);
         assertEquals(expected, actual);
@@ -236,25 +229,25 @@ public class Module4LabSolutionTest {
     // ---------------------------------------------------------
 
     @Test
-    void startOfDevNexus() {
-        LocalDate actual = target.startOfDevNexus();
-        assertEquals(2020, actual.getYear());
-        assertEquals(Month.FEBRUARY, actual.getMonth());
-        assertEquals(19, actual.getDayOfMonth());
-    }
-
-    @Test
-    void endOfDevNexus() {
-        LocalDate actual = target.endOfDevNexus();
-        assertEquals(2020, actual.getYear());
-        assertEquals(Month.FEBRUARY, actual.getMonth());
+    void startOfKcdc() {
+        LocalDate actual = target.startOfKcdc();
+        assertEquals(2023, actual.getYear());
+        assertEquals(Month.JUNE, actual.getMonth());
         assertEquals(21, actual.getDayOfMonth());
     }
 
     @Test
+    void endOfKcdc() {
+        LocalDate actual = target.endOfKcdc();
+        assertEquals(2023, actual.getYear());
+        assertEquals(Month.JUNE, actual.getMonth());
+        assertEquals(23, actual.getDayOfMonth());
+    }
+
+    @Test
     void roomNumbersSmallerThan() {
-        List<Integer> expected = List.of(302, 303, 304, 305);
-        List<Integer> actual = target.roomNumbersSmallerThan(workshops,310);
+        List<Integer> expected = List.of(2201, 2202, 2203, 2204, 2205);
+        List<Integer> actual = target.roomNumbersSmallerThan(workshops,2205);
         assertEquals(expected, actual);
     }
 

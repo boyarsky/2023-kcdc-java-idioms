@@ -62,11 +62,23 @@ public class Module2LabSolutionTest {
     }
 
     @Test
+    void requirements_getAllDistinctNumbers() {
+        assertTrue(codeRules.containsPatternCompile("getAllDistinctNumbers"),
+                "must contain Pattern.compile");
+    }
+
+    @Test
     void getAllDistinctNumbersEvenUnderscores() {
         String text = "There are 100 times 10 in a 1_000. Really 1000";
         Collection<Integer> expected = Set.of(10, 100, 1000);
         Collection<Integer> actual = target.getAllDistinctNumbersEvenUnderscores(text);
         assertEquals(expected, actual);
+    }
+
+    @Test
+    void requirements_getAllDistinctNumbersEvenUnderscores() {
+        assertTrue(codeRules.containsPatternCompile("getAllDistinctNumbersEvenUnderscores"),
+                "must contain Pattern.compile");
     }
 
     // ---------------------------------------------------------
@@ -151,6 +163,8 @@ public class Module2LabSolutionTest {
     void requirements_removeNameWithPattern() {
         assertEquals(1, codeRules.countLoops("removeNameWithPattern"),
                 "must be exactly loop");
+        assertTrue(codeRules.containsPatternCompile("getAllDistinctNumbersEvenUnderscores"),
+                "must contain Pattern.compile");
     }
 
     // ---------------------------------------------------------

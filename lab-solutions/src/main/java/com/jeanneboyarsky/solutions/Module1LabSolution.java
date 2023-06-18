@@ -17,16 +17,16 @@ public class Module1LabSolution {
     }
     // END pipeSeparatedValuesOfAllNoneWhitespaceStrings()
 
-    // START threeCopiesOfFirstStringContainingNexus()
-    public String threeCopiesOfFirstStringContainingNexus(List<String> strings) {
+    // START threeCopiesOfFirstStringContainingKC()
+    public String threeCopiesOfFirstStringContainingKC(List<String> strings) {
         for(String current: strings) {
-            if (current.contains("Nexus")) {
+            if (current.contains("KC")) {
                 return current.repeat(3);
             }
         }
         return "";
     }
-    // END threeCopiesOfFirstStringContainingNexus()
+    // END threeCopiesOfFirstStringContainingKC()
 
     // START allCaseInsensitiveMatchesOfTree()
     public List<String> allCaseInsensitiveMatchesOfTree(List<String> strings) {

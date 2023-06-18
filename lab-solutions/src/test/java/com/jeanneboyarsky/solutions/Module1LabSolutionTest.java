@@ -53,28 +53,28 @@ public class Module1LabSolutionTest {
     // ---------------------------------------------------------
 
     @Test
-    void threeCopiesOfFirstStringContainingNexus() {
-        List<String> list = List.of("Braves", "DevNexus", "Nexus");
-        String expected = "DevNexusDevNexusDevNexus";
-        String actual = target.threeCopiesOfFirstStringContainingNexus(list);
+    void threeCopiesOfFirstStringContainingKC() {
+        List<String> list = List.of("Chiefs", "KCDC", "KC");
+        String expected = "KCDCKCDCKCDC";
+        String actual = target.threeCopiesOfFirstStringContainingKC(list);
         assertEquals(expected, actual);
     }
 
     @Test
-    void threeCopiesOfFirstStringContainingNexus_noMatches() {
-        List<String> list = List.of("braves", "nexus");
+    void threeCopiesOfFirstStringContainingKC_noMatches() {
+        List<String> list = List.of("chiefs", "kcdc");
         String expected = "";
-        String actual = target.threeCopiesOfFirstStringContainingNexus(list);
+        String actual = target.threeCopiesOfFirstStringContainingKC(list);
         assertEquals(expected, actual);
     }
 
     @Test
-    void requirements_threeCopiesOfFirstStringContainingNexus() {
-        assertFalse(codeRules.containsStream("threeCopiesOfFirstStringContainingNexus"),
+    void requirements_threeCopiesOfFirstStringContainingKC() {
+        assertFalse(codeRules.containsStream("threeCopiesOfFirstStringContainingKC"),
                 "cannot contain stream");
-        assertFalse(codeRules.containsLambda("threeCopiesOfFirstStringContainingNexus"),
+        assertFalse(codeRules.containsLambda("threeCopiesOfFirstStringContainingKC"),
                 "cannot contain lambda");
-        assertFalse(codeRules.containsMethodReference("threeCopiesOfFirstStringContainingNexus"),
+        assertFalse(codeRules.containsMethodReference("threeCopiesOfFirstStringContainingKC"),
                 "cannot contain method reference");
     }
 
@@ -162,5 +162,9 @@ public class Module1LabSolutionTest {
                 "no loops allowed");
         assertEquals(1, codeRules.countNewLineCharacters("createBlankTicTacToeBoardWithoutTextBlock"),
                 "must contain exactly one new line");
+        assertFalse(codeRules.containsStream("allCaseInsensitiveMatchesOfTree"),
+                "cannot contain stream");
+        assertFalse(codeRules.containsLambda("allCaseInsensitiveMatchesOfTree"),
+                "cannot contain lambda");
     }
 }

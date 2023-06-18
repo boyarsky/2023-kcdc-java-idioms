@@ -27,44 +27,41 @@ public class Module3LabTest {
     }
 
     @BeforeEach
-    void devNexusWorkshops() {
+    void kcdcWorkshops() {
         workshops = Map.ofEntries(
-                Map.entry("Kotlin",
-                        new Workshop("Kotlin Full Day Workshop", 302,
-                                "Kenneth Kousen")),
-                Map.entry("TDD",
-                        new Workshop("Test Driven Development: From Principles to Practice", 303
-                                , "Venkat Subramaniam")),
-                Map.entry("Idioms",
-                        new Workshop("Java Idioms for becoming a more powerful developer", 304,
-                                "Jeanne Boyarsky")),
+                Map.entry("Performance",
+                        new Workshop("Fundamentals of Web Performance", 2201,
+                                "Todd Gardner")),
+                Map.entry("Career",
+                        new Workshop("Charting a Course to Your Dream Job", 2202
+                                , "Cassandra Faris")),
+                Map.entry("Terraform-Ansible",
+                        new Workshop("Create a Cloud Environment with Terraform and Ansible", 2203,
+                                "Gene Gotimer")),
+                Map.entry("Data-Science",
+                        new Workshop("Data Science: Zero to Hero", 2204,
+                                "Gary Short")),
+                Map.entry("Cypress",
+                        new Workshop("End-to-End and Component Testing with Cypress", 2205,
+                                "Mark Noonan")),
+                Map.entry("GitHub",
+                        new Workshop("End to End DevOps with GitHub", 2206,
+                                "Damian Brady")),
+                Map.entry("FERNI",
+                        new Workshop("Freaky-Fast Full Stack with the FERNI Stack",
+                                2207, "Keith Kurak")),
+                Map.entry("Spring",
+                        new Workshop("Getting Started with Spring", 2208,
+                                "Dan Vega", "DaShaun Carter")),
                 Map.entry("Security",
-                        new Workshop("Java Security Workshop", 305,
-                                "Steve Poole", "Brian Vermeer")),
-                Map.entry("Advanced-Kubernetes",
-                        new Workshop("Advanced Kubernetes workshop", 311,
-                                "Adarsh Shah")),
-                Map.entry("Kubernetes-101",
-                        new Workshop("Kubernetes 101 Workshop", 312,
-                                "JJ Asghar")),
-                Map.entry("CloudNativeMicroprofile",
-                        new Workshop("Cloud Native Microservice with MicroProfile, Docker, Kubernetes, Istio and Open Shift",
-                                313, "Emily Jiang")),
-                Map.entry("Quarkus",
-                        new Workshop("The Quarkus Tutorial", 314,
-                                "Edson Yanaga")),
-                Map.entry("SpringBoot",
-                        new Workshop("Extending Spring Boot for Enterprise", 315,
-                                "Billy Korando")),
-                Map.entry("Microservices",
-                        new Workshop("Responsible Microservices Architecture", 403,
-                                "Nathaniel Schutta")),
-                Map.entry("DDD",
-                        new Workshop("Domain Driven Design Workshop", 404,
-                                "Rob Curry", "Kelly Morrison", "Tony Stuchel", "Steve Fordham", "Sharma Vedula")),
-                Map.entry("CloudNativeSpringBoot",
-                        new Workshop("Google Cloud Native with Spring Boot", 405,
-                                "Ray Tsang", "James Ward")));
+                        new Workshop("To the Left, to the Left: All your Security Shifted to the Left", 2210,
+                                "Eddie Knight", "Theresa Mammarella")),
+                Map.entry("Architecture",
+                        new Workshop("Growing your career in architecture: 8 experiences to prepare you to be a professional architect", 2211,
+                                "Brian Loomis")),
+                Map.entry("Remix",
+                        new Workshop("Remix Fundamentals", 2212,
+                                "Jake Ginnivan")));
     }
 
     // ---------------------------------------------------------
@@ -101,8 +98,8 @@ public class Module3LabTest {
 
     @Test
     void getOptionalByKey_match() {
-        Optional<Workshop> actual = target.getOptionalByKey(workshops, "Kotlin");
-        assertEquals("Kotlin Full Day Workshop", actual.get().getTitle());
+        Optional<Workshop> actual = target.getOptionalByKey(workshops, "Career");
+        assertEquals("Charting a Course to Your Dream Job", actual.get().getTitle());
     }
 
     @Test
@@ -125,15 +122,15 @@ public class Module3LabTest {
 
     @Test
     void getPresentersNoStream_foundSingle() {
-        List<String> expected = List.of("Billy Korando");
-        List<String> actual = target.getPresentersNoStream(workshops, "Extending Spring Boot for Enterprise");
+        List<String> expected = List.of("Todd Gardner");
+        List<String> actual = target.getPresentersNoStream(workshops, "Fundamentals of Web Performance");
         assertEquals(expected, actual);
     }
 
     @Test
     void getPresentersNoStream_foundTwo() {
-        List<String> expected = List.of("Ray Tsang", "James Ward");
-        List<String> actual = target.getPresentersNoStream(workshops, "Google Cloud Native with Spring Boot");
+        List<String> expected = List.of("Dan Vega", "DaShaun Carter");
+        List<String> actual = target.getPresentersNoStream(workshops, "Getting Started with Spring");
         assertEquals(expected, actual);
     }
 
@@ -157,15 +154,15 @@ public class Module3LabTest {
 
     @Test
     void getPresentersStream_foundSingle() {
-        List<String> expected = List.of("Billy Korando");
-        List<String> actual = target.getPresentersStream(workshops, "Extending Spring Boot for Enterprise");
+        List<String> expected = List.of("Todd Gardner");
+        List<String> actual = target.getPresentersStream(workshops, "Fundamentals of Web Performance");
         assertEquals(expected, actual);
     }
 
     @Test
     void getPresentersStream_foundTwo() {
-        List<String> expected = List.of("Ray Tsang", "James Ward");
-        List<String> actual = target.getPresentersStream(workshops, "Google Cloud Native with Spring Boot");
+        List<String> expected = List.of("Dan Vega", "DaShaun Carter");
+        List<String> actual = target.getPresentersStream(workshops, "Getting Started with Spring");
         assertEquals(expected, actual);
     }
 
@@ -191,7 +188,7 @@ public class Module3LabTest {
 
     @Test
     void getSessionKeysWithMultiplePresentersNoStream() {
-        List<String> expected = List.of("Security", "DDD", "CloudNativeSpringBoot");
+        List<String> expected = List.of("Spring", "Security");
         List<String> actual = target.getSessionKeysWithMultiplePresentersNoStream(workshops);
         assertEquals(expected, actual);
     }
@@ -210,7 +207,7 @@ public class Module3LabTest {
 
     @Test
     void getSessionKeysWithMultiplePresentersStream() {
-        List<String> expected = List.of("Security", "DDD", "CloudNativeSpringBoot");
+        List<String> expected = List.of("Spring", "Security");
         List<String> actual = target.getSessionKeysWithMultiplePresentersStream(workshops);
         assertEquals(expected, actual);
     }
@@ -229,26 +226,26 @@ public class Module3LabTest {
 
     // ---------------------------------------------------------
     @Test
-    void largestRoomNumberOnThirdFloor() {
-        Optional<Integer> actual = target.largestRoomNumberOnThirdFloor(workshops);
-        assertEquals(315, actual.get());
+    void largestRoomNumberWithOddNumber() {
+        Optional<Integer> actual = target.largestRoomNumberWithOddNumber(workshops);
+        assertEquals(2211, actual.get());
     }
 
     @Test
-    void largestRoomNumberOnThirdFloor_forNoWorkshops() {
-        Optional<Integer> actual = target.largestRoomNumberOnThirdFloor(Collections.emptyMap());
+    void largestRoomNumberWithOddNumber_forNoWorkshops() {
+        Optional<Integer> actual = target.largestRoomNumberWithOddNumber(Collections.emptyMap());
         assertFalse(actual.isPresent());
     }
 
     @Test
-    void requirements_largestRoomNumberOnThirdFloor() {
-        assertTrue(codeRules.containsStream("largestRoomNumberOnThirdFloor"),
+    void requirements_largestRoomNumberWithOddNumber() {
+        assertTrue(codeRules.containsStream("largestRoomNumberWithOddNumber"),
                 "must contains stream()");
-        assertFalse(codeRules.containsIf("largestRoomNumberOnThirdFloor"),
+        assertFalse(codeRules.containsIf("largestRoomNumberWithOddNumber"),
                 "cannot contain if statement");
-        assertFalse(codeRules.containsLoop("largestRoomNumberOnThirdFloor"),
+        assertFalse(codeRules.containsLoop("largestRoomNumberWithOddNumber"),
                 "cannot contain a loop");
-        assertFalse(codeRules.containsRemoveIf("largestRoomNumberOnThirdFloor"),
+        assertFalse(codeRules.containsRemoveIf("largestRoomNumberWithOddNumber"),
                 "cannot contain removeIf");
     }
 
@@ -256,13 +253,13 @@ public class Module3LabTest {
 
     @Test
     void titleOfRoomOneLowerThan() {
-        Optional<String> actual = target.titleOfRoomOneLowerThan(workshops,304);
-        assertEquals("Test Driven Development: From Principles to Practice", actual.get());
+        Optional<String> actual = target.titleOfRoomOneLowerThan(workshops,2204);
+        assertEquals("Create a Cloud Environment with Terraform and Ansible", actual.get());
     }
 
     @Test
     void titleOfRoomOneLowerThan_lowest() {
-        Optional<String> actual = target.titleOfRoomOneLowerThan(workshops,302);
+        Optional<String> actual = target.titleOfRoomOneLowerThan(workshops,2201);
         assertFalse(actual.isPresent());
     }
 
@@ -282,8 +279,9 @@ public class Module3LabTest {
 
     @Test
     void getTitlesAsCsvWithPrefix() {
-        String expected = "Java Idioms for becoming a more powerful developer,Java Security Workshop";
-        String actual = target.getTitlesAsCsvWithPrefix(workshops, "Java");
+        String expected = "End to End DevOps with GitHub";
+        String actual = target.getTitlesAsCsvWithPrefix(workshops, "End to End");
+        assertEquals(expected, actual);
         assertEquals(expected, actual);
     }
 

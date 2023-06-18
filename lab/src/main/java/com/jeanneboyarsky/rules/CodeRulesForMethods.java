@@ -12,7 +12,8 @@ import java.util.regex.Pattern;
  * Used to use Java Parser library. Switched to methods with comments around them since J
  * ava Parser doesn't support the latest syntax
  *
- * <a href="https://javaparser.org">...</a>
+ * <a href="https://javaparser.org">Java Parser</a>
+ * <a href="https://github.com/javaparser/javaparser/issues/3556">issue</a>
  *
  * <code>
  *     // START newLine()
@@ -114,6 +115,11 @@ public class CodeRulesForMethods {
 
     public boolean containsRemoveIf(String methodName) {
         return containsMethod(methodName, "removeIf");
+    }
+
+    public boolean containsPatternCompile(String methodName) {
+        String methodDeclaration = getMethodDeclarationWithoutSingleLineComments(methodName);
+        return methodDeclaration.contains("Pattern.compile");
     }
 
     private String getMethodDeclarationWithoutSingleLineComments(String methodName) {

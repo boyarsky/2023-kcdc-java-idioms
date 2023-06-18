@@ -5,7 +5,7 @@ Lecture and labs for 2023 KCDC half day training
 
 ## General
 
-Open the lab/src/main/java file for the current lab and implement the methods according to the comments/instructions. Do not delete the "start" and "end" comments as they are used by the tests.
+Open the lab/src/main/java file for the current lab and implement the methods so the tests pass using the contraints in the comments/instructions. Do not delete the "start" and "end" comments as they are used by the tests.
 
 Run the equivalent lab/src/test/java file to see if you got it right.
 

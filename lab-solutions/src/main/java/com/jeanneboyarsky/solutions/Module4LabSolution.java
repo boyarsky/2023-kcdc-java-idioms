@@ -17,7 +17,7 @@ public class Module4LabSolution {
     public record Workshop(String title, int roomNumber, List<String> presenters) {
 
         public Workshop(String title, int roomNumber, String... presenters) {
-            this(title, roomNumber, new ArrayList(Arrays.asList(presenters)));
+            this(title, roomNumber, new ArrayList<>(Arrays.asList(presenters)));
         }
 
         @Override
@@ -122,19 +122,19 @@ public class Module4LabSolution {
     }
     // END absolutePathOfLargestLabSolutionFile()
 
-    // build the date for today: February 19, 2020
-    // START startOfDevNexus()
-    public LocalDate startOfDevNexus() {
-        return LocalDate.of(2020, Month.FEBRUARY, 19);
+    // build the date for today: June 21, 2023
+    // START startOfKcdc()
+    public LocalDate startOfKcdc() {
+        return LocalDate.of(2023, Month.JUNE, 21);
     }
-    // END startOfDevNexus()
+    // END startOfKcdc()
 
-    // add days to start to get last day of Dev Nexus
-    // START endOfDevNexus()
-    public LocalDate endOfDevNexus() {
-        return startOfDevNexus().plusDays(2);
+    // add days to start to get last day of KCDC
+    // START endOfKcdc()
+    public LocalDate endOfKcdc() {
+        return startOfKcdc().plusDays(2);
     }
-    // END endOfDevNexus()
+    // END endOfKcdc()
 
     // START roomNumbersSmallerThan()
     public List<Integer> roomNumbersSmallerThan(Map<String, Workshop> map, int max) {

@@ -14,14 +14,14 @@ public class Module2Lab {
 
     // START getAllDistinctNumbers()
     public Collection<Integer> getAllDistinctNumbers(String text) {
-        //TODO implement using a regex
+        //TODO implement using Pattern.compile
         return null;
     }
     // END getAllDistinctNumbers()
 
     // START getAllDistinctNumbersEvenUnderscores()
     public Collection<Integer> getAllDistinctNumbersEvenUnderscores(String text) {
-        //TODO implement using a regex
+        //TODO implement using Pattern.compile
         return null;
     }
     // END getAllDistinctNumbersEvenUnderscores()

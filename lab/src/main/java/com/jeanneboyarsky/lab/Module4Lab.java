@@ -77,21 +77,21 @@ public class Module4Lab {
     }
     // END absolutePathOfLargestLabSolutionFile()
 
-    // build the date for today: February 19, 2020
-    // START startOfDevNexus()
-    public LocalDate startOfDevNexus() {
+    // build the date for today: June 21, 2023
+    // START startOfKcdc()
+    public LocalDate startOfKcdc() {
         //TODO implement by hardcoding LocalDate
         return null;
     }
-    // END startOfDevNexus()
+    // END startOfKcdc()
 
-    // add days to start to get last day of Dev Nexus
-    // START endOfDevNexus()
-    public LocalDate endOfDevNexus() {
+    // add days to start to get last day of KCDC
+    // START endOfKcdc()
+    public LocalDate endOfKcdc() {
         //TODO implement by performing date arithmetic
         return null;
     }
-    // END endOfDevNexus()
+    // END endOfKcdc()
 
     // START roomNumbersSmallerThan()
     public List<Integer> roomNumbersSmallerThan(Map<String, Workshop> map, int max) {

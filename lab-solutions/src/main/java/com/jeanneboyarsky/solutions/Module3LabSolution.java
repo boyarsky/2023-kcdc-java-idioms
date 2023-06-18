@@ -1,9 +1,6 @@
 package com.jeanneboyarsky.solutions;
 
-import java.io.PrintStream;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class Module3LabSolution {
@@ -79,14 +76,14 @@ public class Module3LabSolution {
     }
     // END getSessionKeysWithMultiplePresentersStream()
 
-    // START largestRoomNumberOnThirdFloor()
-    public Optional<Integer> largestRoomNumberOnThirdFloor(Map<String, Workshop> map) {
+    // START largestRoomNumberWithOddNumber()
+    public Optional<Integer> largestRoomNumberWithOddNumber(Map<String, Workshop> map) {
         return map.values().stream()
                 .map(Workshop::getRoomNumber)
-                .filter(r -> r < 400)
+                .filter(r -> r % 2 == 1)
                 .max(Comparator.naturalOrder());
     }
-    // END largestRoomNumberOnThirdFloor()
+    // END largestRoomNumberWithOddNumber()
 
     // START titleOfRoomOneLowerThan()
     public Optional<String> titleOfRoomOneLowerThan(Map<String, Workshop> map, int roomNumber) {

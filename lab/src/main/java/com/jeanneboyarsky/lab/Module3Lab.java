@@ -66,12 +66,12 @@ public class Module3Lab {
     }
     // END getSessionKeysWithMultiplePresentersStream()
 
-    // START largestRoomNumberOnThirdFloor()
-    public Optional<Integer> largestRoomNumberOnThirdFloor(Map<String, Workshop> map) {
+    // START largestRoomNumberWithOddNumber()
+    public Optional<Integer> largestRoomNumberWithOddNumber(Map<String, Workshop> map) {
         //TODO implement with streams (no removeIf() or if statements or loops)
         return null;
     }
-    // END largestRoomNumberOnThirdFloor()
+    // END largestRoomNumberWithOddNumber()
 
     // START titleOfRoomOneLowerThan()
     public Optional<String> titleOfRoomOneLowerThan(Map<String, Workshop> map, int roomNumber) {

@@ -13,12 +13,12 @@ public class Module1Lab {
     }
     // END pipeSeparatedValuesOfAllNoneWhitespaceStrings()
 
-    // START threeCopiesOfFirstStringContainingNexus()
-    public String threeCopiesOfFirstStringContainingNexus(List<String> strings) {
+    // START threeCopiesOfFirstStringContainingKC()
+    public String threeCopiesOfFirstStringContainingKC(List<String> strings) {
         //TODO implement so tests pass (do not use lambda/stream)
         return "";
     }
-    // END threeCopiesOfFirstStringContainingNexus()
+    // END threeCopiesOfFirstStringContainingKC()
 
     // START allCaseInsensitiveMatchesOfTree()
     public List<String> allCaseInsensitiveMatchesOfTree(List<String> strings) {
