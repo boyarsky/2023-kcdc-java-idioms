@@ -43,7 +43,6 @@ public class CodeRulesForMethods {
         long numLines = Arrays.stream(methodDeclaration.split("\n"))
                 .map(String::strip)
                 .filter(s -> ! s.isEmpty())
-                .peek(System.out::println)
                 .count();
         // don't count first or last line (method signature and close }
         return numLines - 2;
