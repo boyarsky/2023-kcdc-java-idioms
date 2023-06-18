@@ -1,8 +1,5 @@
 package com.jeanneboyarsky.lab;
 
-import com.jeanneboyarsky.solutions.Module7LabSolution;
-
-import java.time.LocalDate;
 import java.util.*;
 
 public class Module7Lab {
