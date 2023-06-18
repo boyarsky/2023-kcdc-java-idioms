@@ -122,6 +122,21 @@ public class CodeRulesForMethods {
         return methodDeclaration.contains("Pattern.compile");
     }
 
+    public boolean containsLines(String methodName) {
+        String methodDeclaration = getMethodDeclarationWithoutSingleLineComments(methodName);
+        return methodDeclaration.contains("lines(");
+    }
+
+    public boolean containsWalk(String methodName) {
+        String methodDeclaration = getMethodDeclarationWithoutSingleLineComments(methodName);
+        return methodDeclaration.contains("walk(");
+    }
+
+    public boolean containsMathMin(String methodName) {
+        String methodDeclaration = getMethodDeclarationWithoutSingleLineComments(methodName);
+        return methodDeclaration.contains("Math.min(");
+    }
+
     private String getMethodDeclarationWithoutSingleLineComments(String methodName) {
         var startComment = "// START " + methodName + "()";
         var endComment = "// END " + methodName + "()";;

@@ -1,5 +1,6 @@
 package com.jeanneboyarsky.solutions;
 
+import com.jeanneboyarsky.rules.CodeRulesForMethods;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
@@ -20,8 +21,7 @@ public class Module4LabSolutionTest {
 
     private Module4LabSolution target;
     private Map<String, Workshop> workshops;
-    // TODO not using due to https://github.com/javaparser/javaparser/issues/3556
-  //  private CodeRulesForMethods codeRules;
+    private CodeRulesForMethods codeRules;
 
     private Path path;
 
@@ -66,9 +66,8 @@ public class Module4LabSolutionTest {
         target.writeWorkshopsSortedByRoomNumber(workshops, path);
 
         Path folder = Paths.get("lab-solutions/src/main/java/");
-        // TODO not using due to https://github.com/javaparser/javaparser/issues/3556
-       // codeRules = new CodeRulesForMethods(folder, "com.jeanneboyarsky.solutions",
-         //       "Module4LabSolution.java");
+        codeRules = new CodeRulesForMethods(folder, "com.jeanneboyarsky.solutions",
+               "Module4LabSolution.java");
     }
 
     @AfterEach
@@ -82,9 +81,8 @@ public class Module4LabSolutionTest {
 
     @Test
     void requirements_writeWorkshopsSortedByRoomNumber() {
-        // TODO not using due to https://github.com/javaparser/javaparser/issues/3556
-        //assertFalse(codeRules.containsLoop("writeWorkshopsSortedByRoomNumber"),
-          //      "must not contain loop");
+        assertFalse(codeRules.containsLoop("writeWorkshopsSortedByRoomNumber"),
+                "must not contain loop");
     }
 
     // ---------------------------------------------------------
@@ -138,9 +136,8 @@ public class Module4LabSolutionTest {
 
     @Test
     void requirements_musicalRooms() {
-        // TODO not using due to https://github.com/javaparser/javaparser/issues/3556
-        //assertFalse(codeRules.containsLoop("musicalRooms"),
-          //      "must not contain loop");
+        assertFalse(codeRules.containsLoop("musicalRooms"),
+                "must not contain loop");
     }
 
     // ---------------------------------------------------------
@@ -153,9 +150,8 @@ public class Module4LabSolutionTest {
 
     @Test
     void requirements_shortestLine() {
-        // TODO not using due to https://github.com/javaparser/javaparser/issues/3556
-       // assertTrue(codeRules.containsLines("shortestLine"),
-         //       "must contains lines()");
+        assertTrue(codeRules.containsLines("shortestLine"),
+                "must contains lines()");
     }
 
     // ---------------------------------------------------------
@@ -190,9 +186,8 @@ public class Module4LabSolutionTest {
 
     @Test
     void requirements_musicalRoomsStreamVersion() {
-        // TODO not using due to https://github.com/javaparser/javaparser/issues/3556
-       // assertTrue(codeRules.containsLines("musicalRoomsStreamVersion"),
-         //       "must contains lines()");
+        assertTrue(codeRules.containsLines("musicalRoomsStreamVersion"),
+                "must contains lines()");
     }
 
     // ---------------------------------------------------------
@@ -221,9 +216,8 @@ public class Module4LabSolutionTest {
 
     @Test
     void requirements_absolutePathOfLargestLabSolutionFile() {
-        // TODO not using due to https://github.com/javaparser/javaparser/issues/3556
-        //assertTrue(codeRules.containsWalk("absolutePathOfLargestLabSolutionFile"),
-          //      "must contains walk()");
+        assertTrue(codeRules.containsWalk("absolutePathOfLargestLabSolutionFile"),
+                "must contains walk()");
     }
 
     // ---------------------------------------------------------
@@ -253,11 +247,10 @@ public class Module4LabSolutionTest {
 
     @Test
     void requirements_roomNumbersSmallerThan() {
-        // TODO not using due to https://github.com/javaparser/javaparser/issues/3556
-        //assertTrue(codeRules.containsStream("roomNumbersSmallerThan"),
-          //      "must contain stream");
-       // assertTrue(codeRules.containsMathMin("roomNumbersSmallerThan"),
-         //       "must contain Math.min");
+        assertTrue(codeRules.containsStream("roomNumbersSmallerThan"),
+                "must contain stream");
+        assertTrue(codeRules.containsMathMin("roomNumbersSmallerThan"),
+                "must contain Math.min");
     }
 
     @RepeatedTest(100)
