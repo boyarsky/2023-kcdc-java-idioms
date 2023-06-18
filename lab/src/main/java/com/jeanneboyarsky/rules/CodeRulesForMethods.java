@@ -1,36 +1,62 @@
 package com.jeanneboyarsky.rules;
 
-import com.github.javaparser.ast.CompilationUnit;
-import com.github.javaparser.utils.SourceRoot;
-
+import java.io.IOException;
+import java.io.UncheckedIOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Used to use Java Parser library. Switched to methods with comments around them since J
+ * ava Parser doesn't support the latest syntax
+ *
+ * <a href="https://javaparser.org">...</a>
+ *
+ * <code>
+ *     // START newLine()
+ *     void newLine() {
+ *         String newLine = "\n";
+ *     }
+ *     // END newLine()
+ * </code>
+ * </code>
+ */
 public class CodeRulesForMethods {
 
-    private CompilationUnit compilationUnit;
+    private final String javaClassText;
 
     public CodeRulesForMethods(Path folder, String packageName, String fileName) {
-        SourceRoot sourceRoot = new SourceRoot(folder);
-        compilationUnit = sourceRoot.parse(packageName, fileName);
+        var javaFile = folder.resolve(packageName.replace('.', '/'))
+                .resolve(fileName);
+        try {
+            javaClassText = Files.readString(javaFile);
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
     }
 
-    public int numberNonCommentedOutLines(String methodName) {
-        MethodVisitorIgnoringCommentLines visitor = new MethodVisitorIgnoringCommentLines(methodName);
-        visitor.visit(compilationUnit, null);
-        return visitor.getMethodLines().size();
+    public long numberNonCommentedOutLines(String methodName) {
+        String methodDeclaration = getMethodDeclarationWithoutSingleLineComments(methodName);
+        long numLines = Arrays.stream(methodDeclaration.split("\n"))
+                .map(String::strip)
+                .filter(s -> ! s.isEmpty())
+                .peek(System.out::println)
+                .count();
+        // don't count first or last line (method signature and close }
+        return numLines - 2;
+
     }
 
     public boolean containsLambda(String methodName) {
-        String methodText = getMethodText(methodName);
-        return methodText.contains("->");
+        String methodDeclaration = getMethodDeclarationWithoutSingleLineComments(methodName);
+        return methodDeclaration.contains("->");
     }
 
     public boolean containsMethodReference(String methodName) {
-        String methodText = getMethodText(methodName);
-        return methodText.contains("::");
+        String methodDeclaration = getMethodDeclarationWithoutSingleLineComments(methodName);
+        return methodDeclaration.contains("::");
     }
 
     public boolean containsStream(String methodName) {
@@ -38,35 +64,35 @@ public class CodeRulesForMethods {
     }
 
     private boolean containsMethod(String methodName, String... targetMethods) {
-        String methodText = getMethodText(methodName);
+        String methodDeclaration = getMethodDeclarationWithoutSingleLineComments(methodName);
         return Arrays.stream(targetMethods).anyMatch(
-                m -> methodText.contains(m + "(")
-                  || methodText.contains("m ("));
+                m -> methodDeclaration.contains(m + "(")
+                  || methodDeclaration.contains("m ("));
     }
 
     public boolean containsNewLine(String methodName) {
-        String methodText = getMethodText(methodName);
+        String methodText = getMethodDeclarationWithoutSingleLineComments(methodName);
         return methodText.contains("\\n");
     }
 
     public boolean containsLoop(String methodName) {
-        String methodText = getMethodText(methodName);
-        return methodText.contains("for ")
-                || methodText.contains("for(")
-                || methodText.contains("while ")
-                || methodText.contains("while(");
+        String methodDeclaration = getMethodDeclarationWithoutSingleLineComments(methodName);
+        return methodDeclaration.contains("for ")
+                || methodDeclaration.contains("for(")
+                || methodDeclaration.contains("while ")
+                || methodDeclaration.contains("while(");
     }
 
     public boolean containsIf(String methodName) {
-        String methodText = getMethodText(methodName);
-        return methodText.contains("if ")
-                || methodText.contains("if(");
+        String methodDeclaration = getMethodDeclarationWithoutSingleLineComments(methodName);
+        return methodDeclaration.contains("if ")
+                || methodDeclaration.contains("if(");
     }
 
     public int countLoops(String methodName) {
-        String methodText = getMethodText(methodName);
+        String methodDeclaration = getMethodDeclarationWithoutSingleLineComments(methodName);
         Pattern pattern = Pattern.compile("(for|while)[ (]");
-        Matcher matcher = pattern.matcher(methodText);
+        Matcher matcher = pattern.matcher(methodDeclaration);
         int count = 0;
         while (matcher.find()) {
             count++;
@@ -90,38 +116,26 @@ public class CodeRulesForMethods {
         return containsMethod(methodName, "removeIf");
     }
 
-    public boolean containsToMap(String methodName) {
-        return containsMethod(methodName, "toMap");
+    private String getMethodDeclarationWithoutSingleLineComments(String methodName) {
+        var startComment = "// START " + methodName + "()";
+        var endComment = "// END " + methodName + "()";;
+        var anyText = ".*?";
+        var regex = "(?s)" + startComment + anyText + endComment;
+        var pattern = Pattern.compile(regex);
+        var matcher = pattern.matcher(javaClassText);
+        if (matcher.find()) {
+            var method = matcher.group();
+            return removeSingleLineComments(method);
+        }
+        throw new IllegalStateException(methodName + " not found");
     }
 
-    public boolean containsFlatMap(String methodName) {
-        return containsMethod(methodName, "flatMap");
-    }
-
-    public boolean containsReduce(String methodName) {
-        return containsMethod(methodName, "reduce");
-    }
-
-    public boolean containsGroupingBy(String methodName) {
-        return containsMethod(methodName, "groupingBy");
-    }
-
-    public boolean containsLines(String methodName) {
-        return containsMethod(methodName, "lines");
-    }
-
-    public boolean containsWalk(String methodName) {
-        return containsMethod(methodName, "walk");
-    }
-
-    public boolean containsMathMin(String methodName) {
-        return containsMethod(methodName, "Math.min");
-    }
-
-    private String getMethodText(String methodName) {
-        MethodVisitorIgnoringCommentLines visitor = new MethodVisitorIgnoringCommentLines(methodName);
-        visitor.visit(compilationUnit, null);
-        return visitor.getMethodText();
+    private String removeSingleLineComments(String text) {
+        var startComment = "//";
+        var anyCharacters = ".*";
+        var endOfLine = "$";
+        var regex = "(?m)" + startComment + anyCharacters + endOfLine;
+        return text.replaceAll(regex, "");
     }
 
 }

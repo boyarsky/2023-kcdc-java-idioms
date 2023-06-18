@@ -23,6 +23,11 @@ class CodeRulesForMethodsTest {
     }
 
     @Test
+    void methodNotFound() {
+        assertThrows(IllegalStateException.class, () -> target.countLoops("unknownMethod"));
+    }
+
+    @Test
     void numberNonCommentedOutLines_withComments() {
         assertEquals(0, target.numberNonCommentedOutLines("commentsOnly"), "# lines");
     }
@@ -104,76 +109,111 @@ class CodeRulesForMethodsTest {
     }
 
     // sample methods
+    // START commentsOnly()
     void commentsOnly() {
         // comment that mentions an if statement
     }
+    // END commentsOnly()
+
+    // START lambda()
     void lambda(List<String> list) {
         list.removeIf(a -> true);
     }
+    // END lambda()
 
+    // START methodReference()
     void methodReference(List<String> list) {
         list.removeIf(String::isEmpty);
     }
+    // END methodReference()
 
+    // START print()
     void print(List<String> list) {
         System.out.print(list);
     }
+    // END print()
 
+    // START newLine()
     void newLine() {
         String newLine = "\n";
     }
+    // END newLine()
 
+    // START println()
     void println(List<String> list) {
         System.out.println(list);
     }
+    // END println()
 
+    // START printStream()
     void printStream(PrintStream printStream) {
         printStream.format("");
     }
+    // END printStream()
 
+    // START stream()
     void stream(List<String> list) {
         list.stream();
     }
+    // END stream()
 
+    // START format()
     void format() {
         System.console().format("label");
     }
+    // END format()
 
+    // START removeIf()
     void removeIf(List<String> list) {
         list.removeIf(p -> true);
     }
+    // END removeIf()
 
+    // START forLoop()
     void forLoop(List<String> list) {
         for(String s : list) {
 
         }
     }
+    // END forLoop()
 
+    // START ifStatement()
     void ifStatement() {
         if (true) {
 
         }
     }
+    // END ifStatement()
 
+    // START whileLoop()
     void whileLoop() {
         while(true) {
 
         }
     }
+    // END whileLoop()
 
+    // START optionalEmpty()
     void optionalEmpty() {
         Optional.empty();
     }
+    // END optionalEmpty()
 
+    // START optionalOf()
     void optionalOf() {
         Optional.of(1);
     }
+    // END optionalOf()
 
+    // START oneNewLine()
     String oneNewLine() {
         return "\n";
     }
+    // END oneNewLine()
 
+    // START twoNewLines()
     String twoNewLines() {
         return "\n \n";
     }
+    // END twoNewLines()
 }

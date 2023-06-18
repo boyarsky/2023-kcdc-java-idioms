@@ -42,6 +42,7 @@ public class Module4LabSolution {
     }
 
     // format: key,room,"title","presenters"
+    // START writeWorkshopsSortedByRoomNumber()
     public void writeWorkshopsSortedByRoomNumber(Map<String, Workshop> map, Path outputPath) {
         List<String> lines = map.entrySet().stream()
                 .sorted(Comparator.comparing(e -> e.getValue().roomNumber()))
@@ -53,10 +54,12 @@ public class Module4LabSolution {
             throw new UncheckedIOException(e);
         }
     }
+    // END writeWorkshopsSortedByRoomNumber()
 
     // re-order so all lines with odd room numbers are first (keeping sort order within odds)
     // followed by all even room numbers (keeping sort order within evens)
     // write the result back to the file
+    // START musicalRooms()
     public void musicalRooms(Path path) throws IOException {
         List<String> initialData = Files.readAllLines(path);
         List<String> oddRoomNumbers = new ArrayList<>(initialData);
@@ -68,17 +71,21 @@ public class Module4LabSolution {
         result.addAll(evenRoomNumbers);
         Files.write(path, result);
     }
+    // END musicalRooms()
 
     private boolean isOddRoomNumber(String line) {
         String roomCell = line.split(",")[1];
         return Integer.parseInt(roomCell) %2 != 0;
     }
 
+    // START shortestLine()
     public Optional<String> shortestLine(Path path) throws IOException {
         return Files.lines(path)
                 .min(Comparator.comparing(String::length));
     }
+    // END shortestLine()
 
+    // START musicalRoomsStreamVersion()
     public void musicalRoomsStreamVersion(Path path) throws IOException {
         List<String> odd = Files.lines(path)
                 .filter(l -> isOddRoomNumber(l))
@@ -89,7 +96,9 @@ public class Module4LabSolution {
         Files.write(path, odd);
         Files.write(path, even, StandardOpenOption.APPEND);
     }
+    // END musicalRoomsStreamVersion()
 
+    // START deleteFileIfNotAbsolutePath()
     public boolean deleteFileIfNotAbsolutePath(Path path) throws IOException {
         if (! path.isAbsolute()) {
             Files.delete(path);
@@ -97,8 +106,10 @@ public class Module4LabSolution {
         }
         return false;
     }
+    // END deleteFileIfNotAbsolutePath()
 
     // challenge
+    // START absolutePathOfLargestLabSolutionFile()
     public Optional<String> absolutePathOfLargestLabSolutionFile() throws IOException {
         Path path = Paths.get("lab-solutions");
         return Files.walk(path)
@@ -109,17 +120,23 @@ public class Module4LabSolution {
                 .map(Path::toString)
                 .findAny();
     }
+    // END absolutePathOfLargestLabSolutionFile()
 
     // build the date for today: February 19, 2020
+    // START startOfDevNexus()
     public LocalDate startOfDevNexus() {
         return LocalDate.of(2020, Month.FEBRUARY, 19);
     }
+    // END startOfDevNexus()
 
     // add days to start to get last day of Dev Nexus
+    // START endOfDevNexus()
     public LocalDate endOfDevNexus() {
         return startOfDevNexus().plusDays(2);
     }
+    // END endOfDevNexus()
 
+    // START roomNumbersSmallerThan()
     public List<Integer> roomNumbersSmallerThan(Map<String, Workshop> map, int max) {
         return map.values().stream()
                 .map(Workshop::roomNumber)
@@ -127,7 +144,9 @@ public class Module4LabSolution {
                 .sorted()
                 .collect(Collectors.toList());
     }
+    // END roomNumbersSmallerThan()
 
+    // START getFiveRandomSessions()
     public List<Integer> getFiveRandomSessions(Map<String, Workshop> map) {
         List<Workshop> workshops = new ArrayList<>(map.values());
         Random random = new Random();
@@ -138,5 +157,6 @@ public class Module4LabSolution {
                 .limit(5)
                 .collect(Collectors.toList());
     }
+    // END getFiveRandomSessions()
 
 }

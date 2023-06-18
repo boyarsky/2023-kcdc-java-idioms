@@ -221,7 +221,7 @@ public class Module4LabSolutionTest {
     @Test
     void absolutePathOfLargestLabSolutionFile() throws IOException {
         Optional<String> actual = target.absolutePathOfLargestLabSolutionFile();
-        assertTrue(actual.get().endsWith("Module7LabSolution.java"));
+        assertTrue(actual.get().endsWith("Module4LabSolution.java"));
     }
 
     // ---------------------------------------------------------
