@@ -23,3 +23,10 @@ JUnit 5.9.3 is provided in the lib folder in case your IDE doesn't work with the
 1. File > Import
 1. Existing Projects into Workspace
 1. In the project properties, set Java to the latest version
+
+## Open in VS Code
+
+1. File > Open folder
+1. Trust files
+
+Note:  Running the tests using test explorer (open a test and click the test tube) works
