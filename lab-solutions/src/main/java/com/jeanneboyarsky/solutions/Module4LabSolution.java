@@ -35,7 +35,7 @@ public class Module4LabSolution {
             result.append('"');
             result.append(',');
             result.append('"');
-            result.append(presenters.stream().collect(Collectors.joining(",")));
+            result.append(String.join(",", presenters));
             result.append('"');
             return result.toString();
         }
@@ -80,19 +80,24 @@ public class Module4LabSolution {
 
     // START shortestLine()
     public Optional<String> shortestLine(Path path) throws IOException {
-        return Files.lines(path)
-                .min(Comparator.comparing(String::length));
+        try (var stream = Files.lines(path)) {
+            return stream.min(Comparator.comparing(String::length));
+        }
     }
     // END shortestLine()
 
     // START musicalRoomsStreamVersion()
     public void musicalRoomsStreamVersion(Path path) throws IOException {
-        List<String> odd = Files.lines(path)
-                .filter(l -> isOddRoomNumber(l))
-                .collect(Collectors.toList());
-        List<String> even = Files.lines(path)
-                .filter(l -> ! isOddRoomNumber(l))
-                .collect(Collectors.toList());
+        List<String> odd;
+        List<String> even;
+        try (var stream = Files.lines(path)) {
+            odd = stream.filter(l -> isOddRoomNumber(l))
+                    .collect(Collectors.toList());
+        }
+        try (var stream = Files.lines(path)) {
+            even = stream.filter(l -> !isOddRoomNumber(l))
+                    .collect(Collectors.toList());
+        }
         Files.write(path, odd);
         Files.write(path, even, StandardOpenOption.APPEND);
     }
@@ -112,13 +117,14 @@ public class Module4LabSolution {
     // START absolutePathOfLargestLabSolutionFile()
     public Optional<String> absolutePathOfLargestLabSolutionFile() throws IOException {
         Path path = Paths.get("lab-solutions");
-        return Files.walk(path)
-                .filter(p -> p.toString().endsWith("LabSolution.java"))
-                .sorted(Comparator.reverseOrder())
-                .limit(1)
-                .map(Path::toAbsolutePath)
-                .map(Path::toString)
-                .findAny();
+        try (var stream = Files.walk(path)) {
+            return stream.filter(p -> p.toString().endsWith("LabSolution.java"))
+                    .sorted(Comparator.reverseOrder())
+                    .limit(1)
+                    .map(Path::toAbsolutePath)
+                    .map(Path::toString)
+                    .findAny();
+        }
     }
     // END absolutePathOfLargestLabSolutionFile()
 

@@ -1,6 +1,5 @@
 package com.jeanneboyarsky.solutions;
 
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -13,7 +13,7 @@ public class Module3LabSolution {
         public Workshop(String title, int roomNumber, String... presenters) {
             this.title = title;
             this.roomNumber = roomNumber;
-            this.presenters = new ArrayList(Arrays.asList(presenters));
+            this.presenters = new ArrayList<>(Arrays.asList(presenters));
         }
 
         public String getTitle() {
