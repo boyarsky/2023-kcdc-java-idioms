@@ -29,7 +29,9 @@ class RemovingTest {
 
     @Test
     void removeEquals() {
-        List<Name> list = List.of(new Name("Jeanne"), new Name("Scott"));
+        List<Name> list = new ArrayList<>();
+        list.add(new Name("Jeanne"));
+        list.add(new Name("Scott"));
         target.removeWithoutEquals(list, "Jeanne");
         assertEquals(1, list.size());
         assertEquals("Scott", list.get(0).getFirstName());
